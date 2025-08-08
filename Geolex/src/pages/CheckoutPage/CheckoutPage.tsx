@@ -576,6 +576,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <button
                   onClick={handleCheckout}
                   className="w-full bg-[#151b25] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-[#13ee9e] transition-colors"
+                  id='checkout-page-checkout-btn'
                 >
                   Checkout
                 </button>

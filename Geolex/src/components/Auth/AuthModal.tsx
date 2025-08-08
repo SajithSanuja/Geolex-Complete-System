@@ -10,7 +10,7 @@ interface AuthModalProps {
 type AuthMode = 'signin' | 'signup'
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const { signIn, signUp, signInWithGoogle, loading } = useAuth()
+  const { signIn, signUp, loading } = useAuth()
   const [mode, setMode] = useState<AuthMode>('signin')
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
@@ -97,14 +97,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     }
   }
 
-  const handleGoogleSignIn = async () => {
-    setErrors('')
-    const result = await signInWithGoogle()
-    if (!result.success) {
-      setErrors(result.error || 'Google sign in failed')
-    }
-    // Note: Google OAuth will redirect, so we don't close the modal here
-  }
+  // const handleGoogleSignIn = async () => {
+  //   setErrors('')
+  //   const result = await signInWithGoogle()
+  //   if (!result.success) {
+  //     setErrors(result.error || 'Google sign in failed')
+  //   }
+  //   // Note: Google OAuth will redirect, so we don't close the modal here
+  // }
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -149,7 +149,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Google Sign In */}
-          <button
+          {/* <button
             type="button"
             onClick={handleGoogleSignIn}
             className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 hover:bg-gray-50 transition-colors mb-4"
@@ -161,17 +161,17 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
             Continue with Google
-          </button>
+          </button> */}
 
           {/* Divider */}
-          <div className="relative mb-4">
+          {/* <div className="relative mb-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">or</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -202,6 +202,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#13ee9e] focus:border-transparent transition-colors"
+                id='auth-modal-email-input'
                 placeholder="Enter your email"
                 required
               />
@@ -218,6 +219,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   value={formData.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                   className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#13ee9e] focus:border-transparent transition-colors"
+                  id='auth-modal-password-input'
                   placeholder="Enter your password"
                   required
                 />
@@ -263,6 +265,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               type="submit"
               disabled={isSubmitting || loading}
               className="w-full bg-[#151b25] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#13ee9e] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              id='auth-modal-signin-btn'
             >
               {isSubmitting || loading ? (
                 <div className="flex items-center justify-center">
