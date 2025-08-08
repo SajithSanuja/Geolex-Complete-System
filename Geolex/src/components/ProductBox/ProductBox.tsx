@@ -189,6 +189,7 @@ const ProductBox: React.FC<ProductBoxProps> = ({
                 ? "text-[black]"
                 : "text-gray-700"
             }`}
+            id="product-box-whishlist-btn"
             onClick={(e) => handleButtonClick(e, handleWishlistToggle)}
           >
             <FontAwesomeIcon 
@@ -204,6 +205,7 @@ const ProductBox: React.FC<ProductBoxProps> = ({
                 ? "bg-black hover:bg-gray-800 text-white"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
+            id="product-box-addtocart-btn"
             disabled={!inStock}
             onClick={(e) => handleButtonClick(e, handleAddToCart)}
           >
